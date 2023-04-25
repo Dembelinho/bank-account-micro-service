@@ -1,6 +1,8 @@
 package ma.enset.bankaccountservice.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +17,9 @@ public class BankAccount {
     @Id
     private String id;
     private Date crDate;
-    private double balance;
-    private String device;
+    private Double balance;
+    private String currency;
+    @Enumerated(EnumType.STRING)  //pour la stocker dans BD en tant que String
     private AccountType type;
 
 }
