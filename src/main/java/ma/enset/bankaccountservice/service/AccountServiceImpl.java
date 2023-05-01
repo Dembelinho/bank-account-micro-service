@@ -28,4 +28,15 @@ public class AccountServiceImpl implements AccountService {
         BankAccountResponseDTO bankAccountResponseDTO=accountMapper.fromBankAccount(savedBkAcc);
         return bankAccountResponseDTO;
     }
+
+    @Override
+    public BankAccountResponseDTO updateAccount(String id, BankAccountRequestDTO bankAccountRequestDTO) {
+        BankAccount bankAccount=accountMapper.fromRequestDTO(bankAccountRequestDTO);
+        bankAccount.setId(id);
+        bankAccount.setCrDate(new Date());
+
+        BankAccount savedBkAcc = bankAccountRepository.save(bankAccount);
+        BankAccountResponseDTO bankAccountResponseDTO=accountMapper.fromBankAccount(savedBkAcc);
+        return bankAccountResponseDTO;
+    }
 }
